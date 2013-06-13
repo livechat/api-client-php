@@ -5,8 +5,11 @@ class Agents extends Model
 	public function get($id=null)
 	{
 		$url = 'agents';
-		$id = (int)$id;
-		if ($id > 0)
+		// Had to be done so that individual agents 
+		// can be checked
+		//$id = (int)$id;
+		//if ($id > 0)
+		if ($id)
 		{
 			$url .= '/'.$id;
 		}
