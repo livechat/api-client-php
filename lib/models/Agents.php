@@ -5,8 +5,7 @@ class Agents extends Model
 	public function get($id=null)
 	{
 		$url = 'agents';
-		$id = (int)$id;
-		if ($id > 0)
+		if (is_null($id) === false)
 		{
 			$url .= '/'.$id;
 		}
