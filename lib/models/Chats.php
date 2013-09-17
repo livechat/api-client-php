@@ -3,7 +3,7 @@
 class Chats extends Model
 {
 
-  public function get($page, $params=array())
+  public function get($params=array())
   {
     $paramsString = $this->parseParams($params);
     $url = 'chats';
