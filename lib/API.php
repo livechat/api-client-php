@@ -49,38 +49,16 @@ class API
 	/**
 	 * Sets user's login and API key for API requests
 	 */
-	public function __construct()
+	public function __construct($login, $apikey)
 	{
-		$aConfig = parse_ini_file(__DIR__. DIRECTORY_SEPARATOR . 'config.ini.php');
-
-		if (!isset($aConfig['login']) || strlen($aConfig['login']) == 0
-		 || !isset($aConfig['api_key']) || strlen($aConfig['api_key']) == 0)
+		if (!isset($login) || strlen($login) === 0
+		 || !isset($apikey) || strlen($apikey) === 0)
 		{
-			throw new \Exception('Please enter correct login and api_key in <strong>/lib/config.ini.php</strong>.');
+			throw new \Exception('Please provide a login name and API key.');
 		}
 
-		/**
-		 * Enable session handling
-		 * for caching sessionId
-		 */
-		if (!isset($_SESSION))
-		{
-			session_start();
-		}
-
-		$this->_login = $aConfig['login'];
-		$this->_apiKey = $aConfig['api_key'];
-
-		/**
-		 * Check if sessionId is cached
-		 * Also, if the login has changed, force the authentication
-		 */
-		if (!isset($_SESSION['login']) || $_SESSION['login'] != $this->_login
-		 || !isset($_SESSION['api_key']) || $_SESSION['api_key'] != $this->_apiKey)
-		{
-			$_SESSION['login'] = $this->_login;
-			$_SESSION['api_key'] = $this->_apiKey;
-		}
+		$this->_login = $login;
+		$this->_apiKey = $apikey;
 	}
 
 	/**
@@ -94,7 +72,7 @@ class API
 	{
 		if (in_array(strtolower($name), $this->_models) == false)
 		{
-			throw new Exception('No such model: '.$name);
+			throw new \Exception('No such model: '.$name);
 		}
 
 		$name = ucwords($name);
