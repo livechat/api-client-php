@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\REST;
 
-class RestUtils
+class Utils
 {
 	public static function sendResponse($status = 200, $body = '', $content_type = 'text/html')
 	{

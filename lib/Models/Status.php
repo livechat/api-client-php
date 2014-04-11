@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\Models;
 
-class Status extends Model
+class Status extends BaseModel
 {
 	public function get($group=0)
 	{
