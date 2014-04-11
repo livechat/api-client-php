@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\Models;
 
-class Agents extends Model
+class Agents extends BaseModel
 {
 	public function get($id=null)
 	{

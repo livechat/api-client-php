@@ -1,15 +1,18 @@
 <?php
+namespace LiveChat;
 
-define('ROOT', dirname(__FILE__).'/');
-define('API_URL', 'https://api.livechatinc.com/');
-define('VERSION', '2.0');
-
-require_once (ROOT . 'models/abstract.Model.php');
-require_once (ROOT . 'rest/RestRequest.php');
-require_once (ROOT . 'rest/RestUtils.php');
-
-class LiveChat_API
+class API
 {
+	/**
+	 * API version
+	 */
+	const VERSION = 2;
+
+	/**
+	 * Base API URL
+	 */
+	const API_URL = 'https://api.livechatinc.com/';
+
 	/**
 	 * User's login (used for API authentication)
 	 */
@@ -48,12 +51,12 @@ class LiveChat_API
 	 */
 	public function __construct()
 	{
-		$aConfig = parse_ini_file(ROOT.'config.ini.php');
+		$aConfig = parse_ini_file(__DIR__. DIRECTORY_SEPARATOR . 'config.ini.php');
 
 		if (!isset($aConfig['login']) || strlen($aConfig['login']) == 0
 		 || !isset($aConfig['api_key']) || strlen($aConfig['api_key']) == 0)
 		{
-			throw new Exception('Please enter correct login and api_key in <strong>/lib/config.ini.php</strong>.');
+			throw new \Exception('Please enter correct login and api_key in <strong>/lib/config.ini.php</strong>.');
 		}
 
 		/**
@@ -89,19 +92,21 @@ class LiveChat_API
 	 */
 	public function __get($name)
 	{
-		if (in_array($name, $this->_models) == false)
+		if (in_array(strtolower($name), $this->_models) == false)
 		{
 			throw new Exception('No such model: '.$name);
 		}
 
-		$class = ucwords($name);
-		$path = ROOT . 'models/'.$class.'.php';
-		if (file_exists($path) == false)
-		{
-			throw new Exception('Model source does not exist: '.$name);
+		$name = ucwords($name);
+		$class = "\\LiveChat\Models\\$name";
+		if (!class_exists($class)) {
+			// When no autoloader is present, load the models manually
+			require_once  __DIR__ . DIRECTORY_SEPARATOR . 'REST' . DIRECTORY_SEPARATOR . 'Request.php';
+			require_once  __DIR__ . DIRECTORY_SEPARATOR . 'REST' . DIRECTORY_SEPARATOR . 'Utils.php';
+			require_once  __DIR__ . DIRECTORY_SEPARATOR . 'Models' . DIRECTORY_SEPARATOR . 'BaseModel.php';
+			require_once  __DIR__ . DIRECTORY_SEPARATOR . 'Models' . DIRECTORY_SEPARATOR . $name . '.php';
 		}
 
-		require_once($path);
 		$model = new $class;
 		$model->setLogin($this->_login);
 		$model->setSessionId($this->_apiKey);

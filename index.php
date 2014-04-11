@@ -1,9 +1,9 @@
 <?php
 
-require_once('lib/LiveChat_API.php');
+require_once('lib/API.php');
 
 try {
-	$LiveChatAPI = new LiveChat_API();
+	$LiveChatAPI = new \LiveChat\API();
 	var_dump($LiveChatAPI->agents->get());
 }
 catch (Exception $e) {
