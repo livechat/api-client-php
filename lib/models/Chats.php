@@ -16,14 +16,8 @@ class Chats extends Model{
 		return parent::get( $url );
 	}
 
-	public function parseParams( $params, $without = "" ) {
-		$return = "";
-		foreach ( $params as $keyParam => $valueParam ) {
-			if ( trim( $valueParam ) != "" && $keyParam != $without ) {
-				$return != "" ? $return.="&" : '';
-				$return.=$keyParam . '=' . $valueParam;
-			}
-		}
-		return $return;
+	public function updateTags($id, $vars){
+		$url = 'chats/'.$id.'/tags';
+		return parent::put($url, $vars);
 	}
 }
