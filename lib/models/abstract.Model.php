@@ -70,6 +70,7 @@ abstract class Model {
 		case 'DELETE':
 			$request = new RestRequest( $url, $method, null, array( 'X-API-Version' => 2 ) );
 			break;
+
 		}
 		$request->setUsername( $this->getLogin() );
 		$request->setPassword( $this->getSessionId() );
@@ -115,4 +116,15 @@ abstract class Model {
 		array_map( "urlencode",  $params );
 	}
 
+	public function parseParams( $params, $without = "" ) {
+		$return = "";
+		foreach ( $params as $keyParam => $valueParam ) {
+			if ( trim( $valueParam ) != "" && $keyParam != $without ) {
+				$return != "" ? $return.="&" : '';
+				$return.=$keyParam . '=' . $valueParam;
+			}
+		}
+
+		return $return;
+	}
 }
