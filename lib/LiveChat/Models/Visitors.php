@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\Models;
 
-class Visitors extends Model
+class Visitors extends BaseModel
 {
 	public function get()
 	{

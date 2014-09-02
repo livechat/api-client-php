@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\Models;
 
-class Reports extends Model
+class Reports extends BaseModel
 {
 
   public function get($type, $params=array())

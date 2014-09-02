@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\Models;
 
-abstract class Model
+abstract class BaseModel
 {
 	protected $_apiUrl = null;
 	protected $_login = null;
@@ -9,7 +10,7 @@ abstract class Model
 
 	public function __construct()
 	{
-		$this->_apiUrl = API_URL;
+		$this->_apiUrl = \LiveChat\API::API_URL;
 	}
 
 	protected function getApiUrl()
@@ -78,12 +79,12 @@ abstract class Model
 		{
 			case 'POST':
 			case 'PUT':
-				$request = new RestRequest($url, $method, $vars, array('X-API-Version' => 2));
+				$request = new \LiveChat\REST\Request($url, $method, $vars, array('X-API-Version' => \LiveChat\API::VERSION));
 				break;
 
 			case 'GET':
 			case 'DELETE':
-				$request = new RestRequest($url, $method, null, array('X-API-Version' => 2));
+				$request = new \LiveChat\REST\Request($url, $method, null, array('X-API-Version' => \LiveChat\API::VERSION));
 				break;
 		}
 		$request->setUsername($this->getLogin());
@@ -98,7 +99,7 @@ abstract class Model
 			// Check if response HTTP code starts with `2` (200, 201, 202 codes)
 			if (preg_match('/^2/', $http_code) == false)
 			{
-				throw new Exception(RestUtils::getStatusCodeMessage($http_code), $http_code);
+				throw new \Exception(\LiveChat\REST\Utils::getStatusCodeMessage($http_code), $http_code);
 			}
 
 			return $request->getResponseBody();
