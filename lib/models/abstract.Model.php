@@ -97,8 +97,13 @@ abstract class Model
 
 			// Check if response HTTP code starts with `2` (200, 201, 202 codes)
 			if (preg_match('/^2/', $http_code) == false)
-			{
-				throw new Exception(RestUtils::getStatusCodeMessage($http_code), $http_code);
+			{	
+				if ($http_code === 0){
+					throw new Exception($request);
+				}else{
+					throw new Exception(RestUtils::getStatusCodeMessage($http_code), $http_code);
+				}
+				
 			}
 
 			return $request->getResponseBody();

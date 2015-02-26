@@ -24,6 +24,7 @@ class RestRequest
 		$this->acceptType		= 'application/json';
 		$this->responseBody		= null;
 		$this->responseInfo		= null;
+		$this->error 			= null;
 		
 		if ($this->requestBody !== null)
 		{
@@ -126,6 +127,7 @@ class RestRequest
 		$this->setCurlOpts($curlHandle);
 		$this->responseBody = curl_exec($curlHandle);
 		$this->responseInfo	= curl_getinfo($curlHandle);
+		$this->error = curl_error($curlHandle);
 		
 		curl_close($curlHandle);
 	}
@@ -140,7 +142,7 @@ class RestRequest
 
 		curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
 		curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
-		curl_setopt($curlHandle, CURLOPT_TIMEOUT, 10);
+		curl_setopt($curlHandle, CURLOPT_TIMEOUT, 15);
 		curl_setopt($curlHandle, CURLOPT_URL, $this->url);
 		curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
@@ -213,5 +215,10 @@ class RestRequest
 	public function setVerb ($verb)
 	{
 		$this->verb = $verb;
-	} 
+	}
+
+	public function getError ()
+	{
+		return $this->error;
+	}
 }
