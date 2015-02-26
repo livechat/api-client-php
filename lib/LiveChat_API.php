@@ -30,7 +30,8 @@ class LiveChat_API
 		'groups',
 		'reports',
 		'status',
-		'visitors'
+		'visitors',
+		'tickets'
 	);
 
 	/**
@@ -54,7 +55,7 @@ class LiveChat_API
 			throw new Exception('Please enter correct login and api_key in <strong>/lib/config.ini.php</strong>.');
 		}
 
-		/** 
+		/**
 		 * Enable session handling
 		 * for caching sessionId
 		 */
