@@ -117,14 +117,17 @@ abstract class Model {
 		return $this->_doRequest( 'DELETE', $url );
 	}
 
-	public function encodeParams( &$params ) {
-		array_map( "urlencode",  $params );
+	private function encodeParams( &$params ) {
+		$params = array_map( "urlencode",  $params );
 	}
 
-	public function parseParams( $params, $without = "" ) {
+	protected function parseParams( $params) {
+		$this->encodeParams($params);
+
 		$return = "";
 		foreach ( $params as $keyParam => $valueParam ) {
-			if ( trim( $valueParam ) != "" && $keyParam != $without ) {
+			# skip empty param keys or values
+			if ( trim( $valueParam ) != "" && $keyParam != "") {
 				$return != "" ? $return.="&" : '';
 				$return.=$keyParam . '=' . $valueParam;
 			}

@@ -5,8 +5,6 @@ class Chats extends Model{
 	public function get( $params=array() ) {
 		$paramsString = $this->parseParams( $params );
 		$url = 'chats';
-		$this->encodeParams( $params );
-		$paramsString = $this->parseParams( $params );
 		$url .= $paramsString != "" ? "?" . $paramsString : "";
 		return parent::get( $url );
 	}
@@ -20,4 +18,5 @@ class Chats extends Model{
 		$url = 'chats/'.$id.'/tags';
 		return parent::put($url, $vars);
 	}
+
 }

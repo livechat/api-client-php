@@ -3,9 +3,8 @@
 class Tickets extends Model
 {
 	public function get( $params=array() ) {
-		$paramsString = $this->parseParams( $params );
+
 		$url = 'tickets';
-		$this->encodeParams( $params );
 		$paramsString = $this->parseParams( $params );
 		$url .= $paramsString != "" ? "?" . $paramsString : "";
 
