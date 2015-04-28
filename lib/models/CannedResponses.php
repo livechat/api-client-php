@@ -21,14 +21,25 @@ class CannedResponses extends Model
         
 	public function addNewResponse($text, $tags)
 	{
-            $url = 'canned_responses';
-            return parent::post($url, array('text' => $text, 'tags' => $tags));
+		$url = 'canned_responses';
+		
+		return parent::post($url, array('text' => $text, 'tags' => $tags));
 	}
 	
-        public function updateResponse($id, $text, $tags)
+    public function updateResponse($id, $text, $tags)
 	{
-            $url = 'canned_responses/'.$id;
-            return parent::put($url, array('text' => $text, 'tags' => $tags));
+		$id = (int)$id;
+		$url = 'canned_responses/'.$id;
+		
+		return parent::put($url, array('text' => $text, 'tags' => $tags));
+	}
+	
+	public function deleteResponse($id)
+	{
+		$id = (int)$id;
+		$url = 'canned_responses/'.$id;
+		
+		return parent::delete($url);
 	}
 
 }
