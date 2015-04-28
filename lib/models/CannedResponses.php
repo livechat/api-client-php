@@ -28,7 +28,7 @@ class CannedResponses extends Model
         public function updateResponse($id, $text, $tags)
 	{
             $url = 'canned_responses/'.$id;
-            return parent::post($url, array('text' => $text, 'tags' => $tags));
+            return parent::put($url, array('text' => $text, 'tags' => $tags));
 	}
 
 }
