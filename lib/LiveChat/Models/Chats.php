@@ -1,13 +1,9 @@
 <?php
 namespace LiveChat\Models;
 
-<<<<<<< HEAD:lib/models/Chats.php
-class Chats extends Model{
-=======
+
 class Chats extends BaseModel
 {
->>>>>>> Modified library to support namespaces:lib/Models/Chats.php
-
 	public function get( $params=array() ) {
 		$paramsString = $this->parseParams( $params );
 		$url = 'chats';
