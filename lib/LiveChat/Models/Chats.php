@@ -1,7 +1,9 @@
 <?php
+namespace LiveChat\Models;
 
-class Chats extends Model{
 
+class Chats extends BaseModel
+{
 	public function get( $params=array() ) {
 		$paramsString = $this->parseParams( $params );
 		$url = 'chats';

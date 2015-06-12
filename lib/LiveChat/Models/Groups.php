@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\Models;
 
-class Groups extends Model
+class Groups extends BaseModel
 {
 	public function get($group=0)
 	{

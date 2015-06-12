@@ -1,7 +1,9 @@
 <?php
 
-class CannedResponses extends Model {
+namespace LiveChat\Models;
 
+
+class CannedResponses extends BaseModel {
     public function get($group = 0) {
         $group = (int) $group;
         $url = 'canned_responses?group=' . $group;
@@ -35,5 +37,4 @@ class CannedResponses extends Model {
 
         return parent::delete($url);
     }
-
 }

@@ -1,6 +1,8 @@
 <?php
 
-class Tickets extends Model
+namespace LiveChat\Models;
+
+class Tickets extends BaseModel
 {
 	public function get( $params=array() ) {
 
@@ -27,5 +29,4 @@ class Tickets extends Model
 
 		return parent::put($url, $vars);
 	}
-
 }

@@ -1,6 +1,7 @@
 <?php
+namespace LiveChat\Models;
 
-class Goals extends Model
+class Goals extends BaseModel
 {
 	public function mark($vars)
 	{

@@ -1,13 +1,17 @@
 <?php
+namespace LiveChat\Models;
 
-abstract class Model {
+
+abstract class BaseModel
+{
 	protected $_apiUrl = null;
 	protected $_login = null;
 	protected $_sessionId = null;
 	protected $_returnResponse = true;
 
-	public function __construct() {
-		$this->_apiUrl = API_URL;
+	public function __construct()
+	{
+		$this->_apiUrl = \LiveChat\API::API_URL;
 	}
 
 	protected function getApiUrl() {
@@ -57,20 +61,21 @@ abstract class Model {
 		return $url;
 	}
 
-	protected function _doRequest( $method, $url, $vars=null ) {
+	protected function _doRequest($method, $url, $vars=null)
+	{
+		
+		$url = $this->_buildUrl($url);
+		switch ($method)
+		{
+			case 'POST':
+			case 'PUT':
+				$request = new \LiveChat\REST\Request($url, $method, $vars, array('X-API-Version' => \LiveChat\API::VERSION));
+				break;
 
-		$url = $this->_buildUrl( $url );
-		switch ( $method ) {
-		case 'POST':
-		case 'PUT':
-			$request = new RestRequest( $url, $method, $vars, array( 'X-API-Version' => 2 ) );
-			break;
-
-		case 'GET':
-		case 'DELETE':
-			$request = new RestRequest( $url, $method, null, array( 'X-API-Version' => 2 ) );
-			break;
-
+			case 'GET':
+			case 'DELETE':
+				$request = new \LiveChat\REST\Request($url, $method, null, array('X-API-Version' => \LiveChat\API::VERSION));
+				break;
 		}
 		$request->setUsername( $this->getLogin() );
 		$request->setPassword( $this->getSessionId() );
@@ -82,19 +87,15 @@ abstract class Model {
 
 			// Check if response HTTP code starts with `2` (200, 201, 202 codes)
 			if (preg_match('/^2/', $http_code) == false)
-			{	
-				if ($http_code === 0){
-					throw new Exception($request);
-				}else{
-					throw new Exception(RestUtils::getStatusCodeMessage($http_code), $http_code);
-				}
+			{
+				throw new \Exception(\LiveChat\REST\Utils::getStatusCodeMessage($http_code), $http_code);
 			}
 
 			return $request->getResponseBody();
 		}
 		else {
 			$response = $request->getResponseInfo();
-			RestUtils::sendResponse( $response['http_code'], $request->getResponseBody() );
+			\LiveChat\REST\Utils::sendResponse( $response['http_code'], $request->getResponseBody() );
 		}
 	}
 
@@ -117,7 +118,7 @@ abstract class Model {
 		return $this->_doRequest( 'DELETE', $url );
 	}
 
-	private function encodeParams( &$params ) {
+	protected function encodeParams( &$params ) {
 		$params = array_map( "urlencode",  $params );
 	}
 
