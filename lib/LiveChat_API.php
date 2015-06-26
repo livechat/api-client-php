@@ -32,7 +32,8 @@ class LiveChat_API
 		'status',
 		'visitors',
 		'tickets',
-		'cannedResponses'
+		'cannedResponses',
+		'webhooks'
 	);
 
 	/**
