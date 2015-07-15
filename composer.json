@@ -18,8 +18,5 @@
         "psr-0": {
             "LiveChat": "src/"
         }
-    },
-    "scripts": {
-        "test": "phpunit"
     }
 }

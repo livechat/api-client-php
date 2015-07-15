@@ -8,6 +8,8 @@ Documentation
 
 To find out more, visit the official [LiveChat REST API documentation](http://developers.livechatinc.com/rest-api/#!introduction).
 
+Previous version of [LiveChat API Client](https://github.com/livechat/api-client-php/tree/0.9).
+
 Requirements
 ------------
 
@@ -24,7 +26,15 @@ More information: http://developers.livechatinc.com/rest-api/#authentication
 Installation
 ------------
 
-Composer
+**Composer**
+
+Set up `dev` as  `minimum-stability` in your `composer.json`: 
+
+~~~javascript
+    "minimum-stability": "dev"
+~~~
+
+Then:
 
 ~~~shell
  $ composer require livechat/api-client-php
@@ -33,6 +43,8 @@ Composer
 
 Execute tests
 ------------
+
+This operation requires PHPUnit installed.
 
 ~~~shell
  $ phpunit
@@ -128,4 +140,5 @@ Available methods
 To do
 ------------
 
- - Tests for models
+- Tests for models
+- Add all supported API methods
