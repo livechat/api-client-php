@@ -1,3 +1,8 @@
+Info
+==============
+
+Please check [current version of LiveChat API Client](https://github.com/livechat/api-client-php).
+
 api-client-php
 ==============
 
