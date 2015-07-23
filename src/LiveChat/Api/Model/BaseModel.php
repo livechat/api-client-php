@@ -6,7 +6,6 @@
 namespace LiveChat\Api\Model;
 
 use LiveChat\Api\Rest\RestRequest;
-use LiveChat\Api\Rest\RestUtils;
 
 /**
  * Base Model class.
@@ -37,7 +36,7 @@ abstract class BaseModel
      */
     protected function get($path)
     {
-        $result = json_decode($this->executeRequest('GET', $path));
+        $result = $this->executeRequest('GET', $path);
 
         return $result;
     }
@@ -127,24 +126,6 @@ abstract class BaseModel
         $request->setPassword($this->password);
         $request->execute();
 
-        if ($this->returnResponse === true) {
-            if (($response = $request->getResponseInfo()) === false) {
-                return json_encode(array('error' => array('message' => 'Something went wrong.')));
-            }
-
-            $httpCode = (array_key_exists('http_code', $response)) ? $response['http_code'] : '';
-            // Check if response HTTP code starts with `2` (200, 201, 202 codes)
-            if (preg_match('/^2/', $httpCode) == false) {
-                if ($httpCode === 0){
-                    throw new \Exception(htmlspecialchars($request));
-                } else{
-                    throw new \Exception(RestUtils::getStatusCodeMessage($httpCode), $httpCode);
-                }
-            }
-
-            return $request->getResponseBody();
-        }
-
-        return null;
+        return ($this->returnResponse === true) ? $request->getResponse() : null;
     }
 }

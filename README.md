@@ -28,7 +28,11 @@ Installation
 
 **Composer**
 
-Set up `dev` as  `minimum-stability` in your `composer.json`: 
+~~~shell
+$ composer require livechat/api-client-php "@dev"
+~~~
+
+**Or**, set up `dev` as  `minimum-stability` in your `composer.json`:
 
 ~~~javascript
     "minimum-stability": "dev"
@@ -62,11 +66,12 @@ use LiveChat\Api\Client as LiveChat;
 
 $LiveChatAPI = new LiveChat('%login%', '%apiKey%');
 $agents = $LiveChatAPI->agents->get();
-?>
 ~~~
 
 Available methods
 ------------
+
+**Methods returns `stdClass` (parsed JSON response).**
 
 ### Agents
 

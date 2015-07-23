@@ -130,6 +130,49 @@ class RestRequest
     }
 
     /**
+     * Get response.
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getResponse() {
+        if (($response = $this->getResponseInfo()) === false) {
+            return json_encode(array('error' => array('message' => 'Something went wrong.')));
+        }
+
+        $httpCode = (array_key_exists('http_code', $response)) ? $response['http_code'] : '';
+        // Check if response HTTP code starts with `2` (200, 201, 202 codes)
+        if (preg_match('/^2/', $httpCode) == false) {
+            $this->throwException($httpCode);
+        }
+
+        return json_decode($this->getResponseBody());
+    }
+
+    /**
+     * Throw exception.
+     *
+     * @param integer $httpCode
+     * @throws \Exception
+     */
+    private function throwException($httpCode) {
+        if ($httpCode === 0){
+            throw new \Exception('Something went wrong. StausCode: 0');
+        } else{
+            $errorResponseBody = json_decode($this->getResponseBody(), true);
+
+            if (array_key_exists('errors', $errorResponseBody)) {
+                $errorMessage = (is_array($errorResponseBody['errors'])) ?
+                    implode('. ', array_map('ucfirst', $errorResponseBody['errors'])) : $errorResponseBody['errors'];
+            }
+
+            throw new \Exception(
+                RestUtils::getStatusCodeMessage($httpCode) . '. ' . $errorMessage . '.',
+                $httpCode
+            );
+        }
+    }
+
+    /**
      * Execute request for GET method.
      * @param $ch cURL handle
      */

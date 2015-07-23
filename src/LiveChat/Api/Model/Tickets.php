@@ -22,7 +22,6 @@ class Tickets extends BaseModel
 
     public function getSingleTicket($ticketId)
     {
-        $this->ensureInteger($ticketId);
         $url = self::METHOD_PATH . '/' . $ticketId;
         return parent::get($url);
     }
@@ -34,7 +33,6 @@ class Tickets extends BaseModel
 
     public function updateTags($id, array $vars)
     {
-        $this->ensureInteger($id);
         $url = self::METHOD_PATH . '/' . $id . '/tags';
 
         return parent::put($url, $vars);
