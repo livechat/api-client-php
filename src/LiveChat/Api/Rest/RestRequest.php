@@ -159,16 +159,17 @@ class RestRequest
             throw new \Exception('Something went wrong. StausCode: 0');
         } else{
             $errorResponseBody = json_decode($this->getResponseBody(), true);
+            $errorMessage = RestUtils::getStatusCodeMessage($httpCode) . '. ';
 
-            if (array_key_exists('errors', $errorResponseBody)) {
-                $errorMessage = (is_array($errorResponseBody['errors'])) ?
+            if (array_key_exists('error', $errorResponseBody)) {
+                $errorMessage .= $errorResponseBody['error'] . '.';
+            } else if (array_key_exists('errors', $errorResponseBody)) {
+                $errorMessage .= (is_array($errorResponseBody['errors'])) ?
                     implode('. ', array_map('ucfirst', $errorResponseBody['errors'])) : $errorResponseBody['errors'];
+                $errorMessage .= '.';
             }
 
-            throw new \Exception(
-                RestUtils::getStatusCodeMessage($httpCode) . '. ' . $errorMessage . '.',
-                $httpCode
-            );
+            throw new \Exception($errorMessage, $httpCode);
         }
     }
 
