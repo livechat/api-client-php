@@ -5,8 +5,6 @@
  */
 namespace LiveChat\Api\Model;
 
-use LiveChat\Api\Model\BaseModel;
-
 class Goals extends BaseModel
 {
     const METHOD_PATH = 'goals';
