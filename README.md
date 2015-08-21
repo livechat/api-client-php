@@ -140,7 +140,7 @@ Available methods
 
 [Visitors REST API documentation](http://developers.livechatinc.com/rest-api/#!visitors).
 
-- `$LiveChatAPI->visitors->get()`
+- `$LiveChatAPI->visitors->get(array $params = array())`
 
 To do
 ------------
