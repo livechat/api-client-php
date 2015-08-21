@@ -11,7 +11,7 @@ class Visitors extends BaseModel
 
     public function get(array $params = array())
     {
-		$url = self::METHOD_PATH;
+        $url = self::METHOD_PATH;
         $paramsString = $this->parseParams($params);
         $url .= $paramsString != "" ? "?" . $paramsString : "";
 
