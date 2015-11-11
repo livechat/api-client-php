@@ -31,6 +31,7 @@ class RestRequest
     private $error;
     private $responseBody;
     private $responseInfo;
+    private $proxy;
 
     /**
      * Setting base request data.
@@ -59,6 +60,15 @@ class RestRequest
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * Set proxy
+     * @param string $proxy
+     */
+    public function setProxy($proxy)
+    {
+        $this->proxy = $proxy;
     }
 
     /**
@@ -252,6 +262,11 @@ class RestRequest
         curl_setopt($curlHandle, CURLOPT_URL, $this->url);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
+
+        if ($this->proxy)
+        {
+            curl_setopt($curlHandle, CURLOPT_PROXY, $this->proxy);
+        }
     }
 
     /**

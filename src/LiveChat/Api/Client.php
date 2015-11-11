@@ -26,6 +26,11 @@ class Client
     private $returnResponse = true;
 
     /**
+     * @var string - Optional proxy for RestRequest
+     */
+    private $proxy = null;
+
+    /**
      * Sets user's login and API key for API requests
      *
      * @param string $login
@@ -52,7 +57,7 @@ class Client
             throw new \Exception('No such model: '.$name);
         }
 
-        return new $className($this->apiLogin, $this->apiKey, $this->returnResponse);
+        return new $className($this->apiLogin, $this->apiKey, $this->returnResponse, $this->proxy);
     }
 
     /**
@@ -73,5 +78,25 @@ class Client
     public function getReturnResponse()
     {
         return $this->returnResponse;
+    }
+
+    /**
+     * Sets proxy for the RestRequest
+     *
+     * @param string $proxy
+     */
+    public function setProxy($proxy)
+    {
+        $this->proxy = $proxy;
+    }
+
+    /**
+     * Returns proxy for the RestRequest
+     *
+     * @return string $proxy
+     */
+    public function getProxy()
+    {
+        return $this->proxy;
     }
 }
