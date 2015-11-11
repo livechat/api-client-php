@@ -26,9 +26,10 @@ class Client
     private $returnResponse = true;
 
     /**
-     * @var string - Optional proxy for RestRequest
+     * @var string - Proxy for RestRequest (optional)
      */
     private $proxy = null;
+
 
     /**
      * Sets user's login and API key for API requests
@@ -83,7 +84,7 @@ class Client
     /**
      * Sets proxy for the RestRequest
      *
-     * @param string $proxy
+     * @param string $proxy Url:Port
      */
     public function setProxy($proxy)
     {
