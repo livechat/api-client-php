@@ -34,4 +34,13 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client->setReturnResponse(false);
         $this->assertFalse($client->getReturnResponse());
     }
+
+    public function testProxy()
+    {
+        $proxyUrl = 'https://www.example.com';
+
+        $client = new LiveChat\Api\Client();
+        $client->setProxy($proxyUrl);
+        $this->assertEquals($client->getProxy(), $proxyUrl);
+    }
 }
