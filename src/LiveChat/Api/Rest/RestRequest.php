@@ -69,8 +69,8 @@ class RestRequest
      */
     public function setProxy($proxy)
     {
-        $this->proxyPort = parse_url( $proxy, PHP_URL_PORT ) ?: 80;
-        $this->proxy = str_replace( ':' . $this->proxyPort, '', $proxy );
+        $this->proxyPort = parse_url($proxy, PHP_URL_PORT) ?: 80;
+        $this->proxy = str_replace(':' . $this->proxyPort, '', $proxy);
     }
 
     /**
@@ -265,8 +265,7 @@ class RestRequest
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, $headers);
 
-        if ($this->proxy && $this->proxyPort)
-        {
+        if ($this->proxy && $this->proxyPort) {
             curl_setopt($curlHandle, CURLOPT_PROXY, $this->proxy);
             curl_setopt($curlHandle, CURLOPT_PROXYPORT, $this->proxyPort);
         }
