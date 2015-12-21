@@ -18,7 +18,7 @@ class Groups extends BaseModel
             $url .= '/' . $group;
         }
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function update($id, array $vars)
@@ -26,12 +26,12 @@ class Groups extends BaseModel
         $this->ensureInteger($id);
         $url = self::METHOD_PATH . '/' . $id;
 
-        return parent::put($url, $vars);
+        return $this->executePut($url, $vars);
     }
 
     public function add(array $vars)
     {
-        return parent::post(self::METHOD_PATH, $vars);
+        return $this->executePost(self::METHOD_PATH, $vars);
     }
 
     public function delete($id)
@@ -39,6 +39,6 @@ class Groups extends BaseModel
         $this->ensureInteger($id);
         $url = self::METHOD_PATH . '/' . $id;
 
-        return parent::delete($url);
+        return $this->executeDelete($url);
     }
 }

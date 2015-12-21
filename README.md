@@ -6,7 +6,7 @@ PHP client for connecting to the LiveChat REST API.
 Documentation
 -------------
 
-To find out more, visit the official [LiveChat REST API documentation](http://developers.livechatinc.com/rest-api/#!introduction).
+To find out more, visit the official [LiveChat REST API documentation](https://developers.livechatinc.com/rest-api/#!introduction).
 
 Previous version of [LiveChat API Client](https://github.com/livechat/api-client-php/tree/0.9).
 
@@ -21,7 +21,7 @@ Requirements
 - login
 - API key
 
-More information: http://developers.livechatinc.com/rest-api/#authentication
+More information: https://developers.livechatinc.com/rest-api/#authentication
 
 Installation
 ------------
@@ -75,7 +75,7 @@ Available methods
 
 ### Agents
 
-[Agents REST API documentation](http://developers.livechatinc.com/rest-api/#!agents).
+[Agents REST API documentation](https://developers.livechatinc.com/rest-api/#!agents).
 
 - `$LiveChatAPI->agents->get($login = null)`
 - `$LiveChatAPI->agents->add(array $vars)`
@@ -84,7 +84,7 @@ Available methods
 
 ### Canned responses
 
-[Canned responses REST API documentation](http://developers.livechatinc.com/rest-api/#!canned-responses).
+[Canned responses REST API documentation](https://developers.livechatinc.com/rest-api/#!canned-responses).
 
 - `$LiveChatAPI->cannedResponses->get($group = 0)`
 - `$LiveChatAPI->cannedResponses->getSingleResponse($id)`
@@ -92,9 +92,9 @@ Available methods
 - `$LiveChatAPI->cannedResponses->updateResponse($id, $text, $tags)`
 - `$LiveChatAPI->cannedResponses->deleteResponse($id)`
 
-### Chats
+### Chat archives
 
-[Chats REST API documentation](http://developers.livechatinc.com/rest-api/#!chats).
+[Archives REST API documentation](https://developers.livechatinc.com/rest-api/#!archives).
 
 - `$LiveChatAPI->chats->get($params = array())`
 - `$LiveChatAPI->chats->getSingleChat($chatId)`
@@ -102,13 +102,13 @@ Available methods
 
 ### Goals
 
-[Goals REST API documentation](http://developers.livechatinc.com/rest-api/#!goals).
+[Goals REST API documentation](https://developers.livechatinc.com/rest-api/#!goals).
 
 - `$LiveChatAPI->goals->markAsSuccessful($goalId)`
 
 ### Groups
 
-[Groups REST API documentation](http://developers.livechatinc.com/rest-api/#!groups).
+[Groups REST API documentation](https://developers.livechatinc.com/rest-api/#!groups).
 
 - `$LiveChatAPI->groups->get($group = 0)`
 - `$LiveChatAPI->groups->update($id, array $vars)`
@@ -117,19 +117,19 @@ Available methods
 
 ### Reports
 
-[Reports REST API documentation](http://developers.livechatinc.com/rest-api/#!reports).
+[Reports REST API documentation](https://developers.livechatinc.com/rest-api/#!reports).
 
 - `$LiveChatAPI->reports->get($type, array $params = array())`
 
 ### Status
 
-[Status REST API documentation](http://developers.livechatinc.com/rest-api/#!status).
+[Status REST API documentation](https://developers.livechatinc.com/rest-api/#!status).
 
 - `$LiveChatAPI->status->get($group = 0)`
 
 ### Tickets
 
-[Tickets REST API documentation](http://developers.livechatinc.com/rest-api/#!tickets).
+[Tickets REST API documentation](https://developers.livechatinc.com/rest-api/#!tickets).
 
 - `$LiveChatAPI->tickets->get(array $params = array())`
 - `$LiveChatAPI->tickets->getSingleTicket($ticketId)`
@@ -138,7 +138,7 @@ Available methods
 
 ### Visitors
 
-[Visitors REST API documentation](http://developers.livechatinc.com/rest-api/#!visitors).
+[Visitors REST API documentation](https://developers.livechatinc.com/rest-api/#!visitors).
 
 - `$LiveChatAPI->visitors->get(array $params = array())`
 

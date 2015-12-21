@@ -14,7 +14,7 @@ class CannedResponses extends BaseModel
         $this->ensureInteger($group);
         $url = self::METHOD_PATH . '?group=' . $group;
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function getSingleResponse($id)
@@ -22,12 +22,12 @@ class CannedResponses extends BaseModel
         $this->ensureInteger($id);
         $url = self::METHOD_PATH . '/' . $id;
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function addNewResponse($text, $tags)
     {
-        return parent::post(self::METHOD_PATH, array('text' => $text, 'tags' => $tags));
+        return $this->executePost(self::METHOD_PATH, array('text' => $text, 'tags' => $tags));
     }
 
     public function updateResponse($id, $text, $tags)
@@ -35,7 +35,7 @@ class CannedResponses extends BaseModel
         $this->ensureInteger($id);
         $url = self::METHOD_PATH . '/' . $id;
 
-        return parent::put($url, array('text' => $text, 'tags' => $tags));
+        return $this->executePut($url, array('text' => $text, 'tags' => $tags));
     }
 
     public function deleteResponse($id)
@@ -43,6 +43,6 @@ class CannedResponses extends BaseModel
         $this->ensureInteger($id);
         $url = self::METHOD_PATH . '/' . $id;
 
-        return parent::delete($url);
+        return $this->executeDelete($url);
     }
 }

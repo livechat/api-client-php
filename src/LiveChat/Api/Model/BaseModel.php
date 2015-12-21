@@ -37,7 +37,7 @@ abstract class BaseModel
      * @param string $path
      * @return mixed
      */
-    protected function get($path)
+    protected function executeGet($path)
     {
         $result = $this->executeRequest('GET', $path);
 
@@ -50,7 +50,7 @@ abstract class BaseModel
      * @param array $requestBody
      * @return mixed
      */
-    protected function post($path, array $requestBody = array())
+    protected function executePost($path, array $requestBody = array())
     {
         return $this->executeRequest('POST', $path, $requestBody);
     }
@@ -61,7 +61,7 @@ abstract class BaseModel
      * @param array $requestBody
      * @return mixed
      */
-    protected function put($path, array $requestBody = array())
+    protected function executePut($path, array $requestBody = array())
     {
         return $this->executeRequest('PUT', $path, $requestBody);
     }
@@ -71,7 +71,7 @@ abstract class BaseModel
      * @param string $path
      * @return mixed
      */
-    protected function delete($path)
+    protected function executeDelete($path)
     {
         return $this->executeRequest('DELETE', $path);
     }

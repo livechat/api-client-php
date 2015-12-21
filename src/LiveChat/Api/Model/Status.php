@@ -18,7 +18,7 @@ class Status extends BaseModel
             $url .= '/' . $group;
         }
 
-        $status = parent::get($url);
+        $status = $this->executeGet($url);
 
         return $status->status;
     }

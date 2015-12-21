@@ -16,25 +16,25 @@ class Agents extends BaseModel
             $url .= '/' . $login;
         }
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function add(array $vars)
     {
-        return parent::post(self::METHOD_PATH, $vars);
+        return $this->executePost(self::METHOD_PATH, $vars);
     }
 
     public function update($login, array $vars)
     {
         $url = self::METHOD_PATH . '/' . $login;
 
-        return parent::put($url, $vars);
+        return $this->executePut($url, $vars);
     }
 
     public function delete($login)
     {
         $url = self::METHOD_PATH . '/' . $login;
 
-        return parent::delete($url);
+        return $this->executeDelete($url);
     }
 }

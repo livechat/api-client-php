@@ -15,24 +15,24 @@ class Tickets extends BaseModel
         $paramsString = $this->parseParams($params);
         $url .= $paramsString != "" ? "?" . $paramsString : "";
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function getSingleTicket($ticketId)
     {
         $url = self::METHOD_PATH . '/' . $ticketId;
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function add(array $vars)
     {
-        return parent::post(self::METHOD_PATH, $vars);
+        return $this->executePost(self::METHOD_PATH, $vars);
     }
 
     public function updateTags($id, array $vars)
     {
         $url = self::METHOD_PATH . '/' . $id . '/tags';
 
-        return parent::put($url, $vars);
+        return $this->executePut($url, $vars);
     }
 }

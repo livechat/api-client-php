@@ -17,22 +17,20 @@ class Chats extends BaseModel
             $url .= '?' . $paramsString;
         }
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function getSingleChat($chatId)
     {
-        $this->ensureInteger($chatId);
         $url = self::METHOD_PATH . '/' . $chatId;
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
     public function updateTags($id, array $vars)
     {
-        $this->ensureInteger($id);
         $url = self::METHOD_PATH . '/' . $id . '/tags';
 
-        return parent::put($url, $vars);
+        return $this->executePut($url, $vars);
     }
 }

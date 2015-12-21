@@ -15,7 +15,7 @@ class Reports extends BaseModel
         $paramsString = $this->parseParams($params);
         $url .= $paramsString != '' ? '?' . $paramsString : '';
 
-        return parent::get($url);
+        return $this->executeGet($url);
     }
 
 }

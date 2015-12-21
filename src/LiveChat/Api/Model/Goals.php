@@ -14,7 +14,7 @@ class Goals extends BaseModel
         $this->ensureInteger($goalId);
         $url = self::METHOD_PATH . '/' . $goalId . '/mark_as_successful';
 
-        return parent::post($url);
+        return $this->executePost($url);
     }
 
 }

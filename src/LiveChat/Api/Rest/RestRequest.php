@@ -147,11 +147,11 @@ class RestRequest
      * @throws \Exception
      */
     public function getResponse() {
-        if (($response = $this->getResponseInfo()) === false) {
+        if (false === ($response = $this->getResponseInfo())) {
             return json_encode(array('error' => array('message' => 'Something went wrong.')));
         }
 
-        $httpCode = (array_key_exists('http_code', $response)) ? $response['http_code'] : '';
+        $httpCode = (is_array($response) && array_key_exists('http_code', $response)) ? $response['http_code'] : null;
         // Check if response HTTP code starts with `2` (200, 201, 202 codes)
         if (preg_match('/^2/', $httpCode) == false) {
             $this->throwException($httpCode);
@@ -167,18 +167,20 @@ class RestRequest
      * @throws \Exception
      */
     private function throwException($httpCode) {
-        if ($httpCode === 0){
-            throw new \Exception('Something went wrong. StausCode: 0');
+        if (null === $httpCode){
+            throw new \Exception('Something went wrong. StausCode is null.');
         } else{
             $errorResponseBody = json_decode($this->getResponseBody(), true);
             $errorMessage = RestUtils::getStatusCodeMessage($httpCode) . '. ';
 
-            if (array_key_exists('error', $errorResponseBody)) {
-                $errorMessage .= $errorResponseBody['error'] . '.';
-            } else if (array_key_exists('errors', $errorResponseBody)) {
-                $errorMessage .= (is_array($errorResponseBody['errors'])) ?
-                    implode('. ', array_map('ucfirst', $errorResponseBody['errors'])) : $errorResponseBody['errors'];
-                $errorMessage .= '.';
+            if (is_array($errorResponseBody)) {
+                if (array_key_exists('error', $errorResponseBody)) {
+                    $errorMessage .= $errorResponseBody['error'] . '.';
+                } else if (array_key_exists('errors', $errorResponseBody)) {
+                    $errorMessage .= (is_array($errorResponseBody['errors'])) ?
+                        implode('. ', array_map('ucfirst', $errorResponseBody['errors'])) : $errorResponseBody['errors'];
+                    $errorMessage .= '.';
+                }
             }
 
             throw new \Exception($errorMessage, $httpCode);
