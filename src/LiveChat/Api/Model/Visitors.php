@@ -15,6 +15,6 @@ class Visitors extends BaseModel
         $paramsString = $this->parseParams($params);
         $url .= $paramsString != "" ? "?" . $paramsString : "";
 
-        return $this->executeGet(self::METHOD_PATH);
+        return $this->executeGet($url);
     }
 }
