@@ -142,6 +142,20 @@ Available methods
 
 - `$LiveChatAPI->visitors->get(array $params = array())`
 
+### Visitors
+
+[Tags REST API documentation](https://docs.livechatinc.com/rest-api/#tags).
+
+- `$LiveChatAPI->tags->get($group=0)`
+
+- `$LiveChatAPI->tags->add(array(
+    "author" => 'test@email.com', //optional
+    "tag" => 'Test Tag', 
+    "group" => 1 //optional
+))`
+
+- `$LiveChatAPI->tags->delete('Tag Name')`
+
 To do
 ------------
 
