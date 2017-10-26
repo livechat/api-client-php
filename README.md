@@ -162,7 +162,7 @@ Available methods
 
 - `$LiveChatAPI->webhooks->get()`
 
-- `$LiveChatAPI->webhooks->webhooks(array(
+- `$LiveChatAPI->webhooks->add(array(
     "event_type" => "chat_started",
     "data_types" => array(
         "chat", "visitor"
