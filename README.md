@@ -156,6 +156,22 @@ Available methods
 
 - `$LiveChatAPI->tags->delete('Tag Name')`
 
+### Webhooks
+
+[Webhooks REST API documentation](https://docs.livechatinc.com/rest-api/#webhooks).
+
+- `$LiveChatAPI->webhooks->get()`
+
+- `$LiveChatAPI->webhooks->webhooks(array(
+    "event_type" => "chat_started",
+    "data_types" => array(
+        "chat", "visitor"
+    ),
+    "url" => "http://www.shoeshop.com/webhook",
+))`
+
+- `$LiveChatAPI->webhooks->delete('622d3950eecea8bb5f8c26f20c76ee2e')`
+
 To do
 ------------
 
