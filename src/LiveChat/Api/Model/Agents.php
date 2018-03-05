@@ -8,12 +8,22 @@ namespace LiveChat\Api\Model;
 class Agents extends BaseModel
 {
     const METHOD_PATH = 'agents';
-
-    public function get($login = null)
+    
+    /**
+     * Get Agent(s)
+     * @param array|string $loginOrParams Login if String, Filter Parameters if Array
+     * @return type
+     */
+    public function get($loginOrParams = null)
     {
         $url = self::METHOD_PATH;
-        if ($login !== null) {
-            $url .= '/' . $login;
+        if ($loginOrParams !== null) {
+            if(is_array($loginOrParams)){
+                $paramsString = $this->parseParams($loginOrParams);
+                $url .= $paramsString != "" ? "?" . $paramsString : "";
+            }else{
+                $url .= '/' . $loginOrParams;
+            }
         }
 
         return $this->executeGet($url);
