@@ -1,5 +1,5 @@
 {
-    "name": "livechat/api-client-php",
+    "name": "jigarakatidus/php-livechat-client",
     "type": "library",
     "description": "Enables PHP applications to communicate with the LiveChat API.",
     "keywords": ["api", "rest"],
