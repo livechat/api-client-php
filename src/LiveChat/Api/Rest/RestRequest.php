@@ -144,9 +144,10 @@ class RestRequest
     /**
      * Get response.
      * @return mixed
+     * @param $returnArrayResponse
      * @throws \Exception
      */
-    public function getResponse() {
+    public function getResponse($returnArrayResponse = false) {
         if (false === ($response = $this->getResponseInfo())) {
             return json_encode(array('error' => array('message' => 'Something went wrong.')));
         }
@@ -157,7 +158,7 @@ class RestRequest
             $this->throwException($httpCode);
         }
 
-        return json_decode($this->getResponseBody());
+        return json_decode($this->getResponseBody(), $returnArrayResponse);
     }
 
     /**

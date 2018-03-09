@@ -16,6 +16,7 @@ abstract class BaseModel
     private $password = null;
     private $returnResponse = true;
     private $proxy = null;
+    private $returnArrayResponse = false;
 
     /**
      * Set up base properties.
@@ -24,24 +25,31 @@ abstract class BaseModel
      * @param boolean $returnResponse
      * @param string $proxy
      */
-    public function __construct($username = null, $password = null, $returnResponse = true, $proxy = null)
+    public function __construct($username = null, $password = null, $returnResponse = true, $proxy = null, $returnArrayResponse = false)
     {
         $this->username = $username;
         $this->password = $password;
         $this->returnResponse = (boolean) $returnResponse;
         $this->proxy = $proxy;
+        $this->returnArrayResponse = (boolean) $returnArrayResponse;
     }
 
     /**
      * Execute GET method
      * @param string $path
+     * @param bool $returnArrayResponse true to return array, else stdClass object
      * @return mixed
      */
-    protected function executeGet($path)
+    protected function executeGet($path, $returnArrayResponse = false)
     {
+        $this->setReturnArrayResponse($returnArrayResponse);
         $result = $this->executeRequest('GET', $path);
 
         return $result;
+    }
+    
+    protected function setReturnArrayResponse($value){
+        $this->returnArrayResponse = $value;
     }
 
     /**
@@ -130,6 +138,6 @@ abstract class BaseModel
         $request->setProxy($this->proxy);
         $request->execute();
 
-        return ($this->returnResponse === true) ? $request->getResponse() : null;
+        return ($this->returnResponse === true) ? $request->getResponse($this->returnArrayResponse) : null;
     }
 }
