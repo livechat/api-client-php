@@ -117,7 +117,7 @@ abstract class BaseModel
      * @param string $method
      * @param string $path
      * @param array $requestBody
-     * @return miexd
+     * @return mixed
      * @throws \Exception
      */
     private function executeRequest($method, $path, array $requestBody = array())

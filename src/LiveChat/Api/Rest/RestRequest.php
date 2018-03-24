@@ -101,7 +101,7 @@ class RestRequest
     }
 
     /**
-     * Retruns error.
+     * Returns error.
      * @return string the error message or '' (the empty string) if no error occurred.
      */
     public function getError()
@@ -168,7 +168,7 @@ class RestRequest
      */
     private function throwException($httpCode) {
         if (null === $httpCode){
-            throw new \Exception('Something went wrong. StausCode is null.');
+            throw new \Exception('Something went wrong. StatusCode is null.');
         } else{
             $errorResponseBody = json_decode($this->getResponseBody(), true);
             $errorMessage = RestUtils::getStatusCodeMessage($httpCode) . '. ';
