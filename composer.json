@@ -3,12 +3,12 @@
     "type": "library",
     "description": "Enables PHP applications to communicate with the LiveChat API.",
     "keywords": ["api", "rest"],
-    "homepage": "http://developer.livechatinc.com",
+    "homepage": "https://developers.livechatinc.com",
     "license": "MIT",
     "authors": [
         {
             "name": "LiveChat",
-            "homepage": "http://www.livechatinc.com"
+            "homepage": "https://www.livechatinc.com"
         }
     ],
     "require": {

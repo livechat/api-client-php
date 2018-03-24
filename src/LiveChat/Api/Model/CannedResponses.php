@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @see http://developers.livechatinc.com/rest-api/#!canned-responses
+ * @see https://docs.livechatinc.com/rest-api/#canned-responses
  */
 namespace LiveChat\Api\Model;
 
