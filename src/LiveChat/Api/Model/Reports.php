@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @see http://developers.livechatinc.com/rest-api/#!reports
+ * @see https://docs.livechatinc.com/rest-api/#reports
  */
 namespace LiveChat\Api\Model;
 
