@@ -106,17 +106,24 @@ abstract class BaseModel
      */
     protected function parseParams(array $params)
     {
-        $encodedParams = array_map('urlencode', $params);
-
         $return = '';
-        foreach ($encodedParams as $key => $value) {
+        foreach ($params as $key => $value) {
             # skip empty param keys or values
-            if (trim($value) != '' && $key != '') {
-                $return != '' ? $return .= '&' : '';
-                $return .= $key . '=' . $value;
+            if ($key != '') {
+                if(is_array($value)){
+                    foreach($value as $v){
+                        $return != '' ? $return .= '&' : '';
+                        $return .= $key . '[]=' . $v;
+                    }
+                }else{
+                    if(trim($value) != '' ){
+                        $return != '' ? $return .= '&' : '';
+                        $return .= $key . '=' . $value;
+                    }
+                }
             }
         }
-
+        
         return $return;
     }
 
